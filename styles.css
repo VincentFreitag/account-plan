@@ -199,6 +199,18 @@ em { font-style: italic; }
 .stages a:hover { color: var(--ink); }
 .stages a.active { color: var(--accent); border-bottom-color: var(--accent); }
 .stages a.active span { color: var(--accent); }
+.stages .who {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  margin-right: auto;
+  padding: 0.1rem 0;
+}
+@media (max-width: 48rem) { .stages .who { display: none; } }
 .stages .progress {
   position: absolute;
   left: 0;
@@ -261,35 +273,9 @@ section h3 {
 }
 
 /* ————— Data elements: shared ————— */
-.viz-title {
-  font-family: var(--mono);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 0.75rem;
-}
-.viz-legend {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  margin: 0.85rem 0 0;
-  padding: 0;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  color: var(--muted);
-}
-.viz-legend li { display: flex; align-items: center; gap: 0.5em; }
 .sw { width: 0.75rem; height: 0.75rem; border-radius: 2px; flex: none; }
-
-/* ————— Requirement coverage meter ————— */
-.coverage { margin: 2.25rem 0 0.5rem; }
-.coverage-bar { display: flex; gap: 2px; }
-.coverage-bar span { flex: 1; height: 1.125rem; border-radius: 2px; }
-.cov-direct { background: var(--accent); }
-.cov-transfer {
+.sw-direct { background: var(--accent); }
+.sw-transfer {
   background: repeating-linear-gradient(
     45deg,
     var(--accent) 0, var(--accent) 2px,
@@ -297,7 +283,6 @@ section h3 {
   );
   box-shadow: inset 0 0 0 1px var(--accent);
 }
-.cov-gap { box-shadow: inset 0 0 0 1px var(--muted); background: transparent; }
 
 /* ————— Quota vs target quarters ————— */
 .quarters { margin: 0.25rem 0 1.25rem; }
@@ -334,11 +319,31 @@ section h3 {
   border-top: 1px solid var(--rule);
   padding-top: 0.85rem;
 }
-.fitmap dd { margin: 0.35rem 0 1.35rem; }
+.fitmap dd.ev { margin: 0.35rem 0 0.6rem; }
+.fitmap dd.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  margin: 0 0 1.35rem;
+}
 @media (min-width: 40rem) {
-  .fitmap { display: grid; grid-template-columns: 12.5rem 1fr; column-gap: 1.5rem; }
-  .fitmap dt, .fitmap dd { border-top: 1px solid var(--rule); padding: 0.85rem 0; margin: 0; }
-  .fitmap dd { margin: 0; }
+  .fitmap {
+    display: grid;
+    grid-template-columns: 11.5rem 1fr auto;
+    column-gap: 1.5rem;
+  }
+  .fitmap dt, .fitmap dd.ev, .fitmap dd.tag {
+    border-top: 1px solid var(--rule);
+    padding: 0.85rem 0;
+    margin: 0;
+  }
 }
 .pattern {
   background: var(--paper-raised);
@@ -403,13 +408,6 @@ section h3 {
   text-decoration: none;
 }
 .proof-link a:hover { text-decoration: underline; }
-.record {
-  list-style: none;
-  margin: 0; padding: 0;
-  font-size: 1rem;
-}
-.record li { padding: 0.4rem 0; border-top: 1px solid var(--rule); }
-.record li:first-child { border-top: 0; padding-top: 0; }
 .also-live {
   font-size: 0.9375rem;
   color: var(--muted);
@@ -531,6 +529,22 @@ section h3 {
   text-transform: uppercase;
   color: var(--muted);
   padding-top: 0.5rem;
+}
+
+.fun-fact {
+  border-top: 1px solid var(--rule);
+  padding-top: 0.9rem;
+  font-size: 1rem;
+}
+.fun-fact span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
 }
 
 /* ————— Colophon & footer ————— */
