@@ -1,5 +1,5 @@
-// Stage navigation: track scroll position, mark the active deal stage.
-// That's the whole script — this page needs nothing else.
+// Stage navigation: track scroll position, mark the active deal stage,
+// and fill the progress bar. That's the whole script.
 (() => {
   const links = document.querySelectorAll(".stages a");
   const byId = {};
@@ -20,6 +20,16 @@
     { rootMargin: "-15% 0px -35% 0px" }
   );
   document.querySelectorAll("main section").forEach((s) => observer.observe(s));
+
+  // Deal progress: how far through the motion the reader is.
+  const bar = document.querySelector(".stages .progress");
+  const onScroll = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0).toFixed(2) + "%";
+  };
+  document.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
   // Open an objection card if it's the link target (e.g. from a shared URL).
   if (location.hash) {
